@@ -3,13 +3,14 @@ const Schema = mongoose.Schema
 
 const categorySchema = new Schema({
     category_name: {type: String, require: true, trim: true }
-},{collection:"categorys",});
-
-const category = mongoose.model("categorys",categorySchema)
+},{toJSON:{virtuals:true},collection:"categorys"});
 
 categorySchema.virtual('products', {
-    ref:'products',
+    ref:'Product',
     localField:'_id',
     foreignField:'category_id'
 })
+
+const category = mongoose.model("Category",categorySchema)
+
 module.exports = category

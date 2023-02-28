@@ -76,12 +76,24 @@ exports.product = async (req, res, next) => {
 };
 
 exports.Prodshow = async (req, res, next) => {
-  const { id } = req.params;
-  const category = await Category.findOne({ _id: id }).populate("product");
+  try {
+    const {id} = req.params
+    const category =await Category.findOne({
+        _id: id
+     }).populate('products')
 
-  res.status(200).json({
-    data: category,
-  });
+     if (!category){
+        const error = new Error("Category not found.")
+        error.statusCode = 400
+        throw error;
+     } else {
+        res.status(200).json({
+        data: category
+        })
+     }
+  } catch (error){
+    next(error)
+  }
 };
 
 exports.Prodinsert = async (req, res, next) => {
