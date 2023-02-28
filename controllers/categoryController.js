@@ -98,7 +98,7 @@ exports.Prodshow = async (req, res, next) => {
 
 exports.Prodinsert = async (req, res, next) => {
   try {
-    const { product_name, price, category_id, total, photo } = req.body;
+    const { product_name, price, category_id, total } = req.body;
 
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -113,7 +113,6 @@ exports.Prodinsert = async (req, res, next) => {
       price: price,
       category_id: category_id,
       total: total,
-      photo: photo ? await saveImageToDisk(photo) : undefined,
     });
     await product.save();
 
