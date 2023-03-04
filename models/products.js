@@ -6,6 +6,7 @@ const productSchema = new Schema({
     price:  {type: Number},
     photo: { type: String, default:'nopic.png' },
     category_id:{ type:Schema.Types.ObjectId,ref:'categorys'},
+    category_name:{type:Schema.Types.String,ref:'categorys'},
     total:{type: Number ,default:0},
     created: { type:Date,default: Date.now}
   },{toJSON:{virtuals:true},collection:"products",});
