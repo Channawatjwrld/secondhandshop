@@ -93,30 +93,22 @@ exports.profile = (req,res,next) => {
   })
 }
 
-/*exports.rolechange = async (req, res, next) => {
+exports.rolechange = async (req, res, next) => {
   try {
     const { id } = req.params
     const { role } = req.body
-    const user = await User.findById({
-      _id: id,
-    });
-    //check user exist
-    if (!user) {
-      const error = new Error("ไม่พบข้อมูลผู้ใช้งาน")
-      error.statusCode = 404
-      throw error
+    const user = await User.updateOne({_id: id},{
+          role: role
+      })
+      console.log(staff);
+
+      res.status(200).json({
+        message:'แก้ไข role giup[ihvp'
+      });
+
+    }catch (error){
+       error = new Error('No staff Found')
+       error.statusCode = 400
+       next(error)
     }
-    //update
-    const data = await User.findByIdAndUpdate({ _id: id }, {
-      role: role
-    })
-    //respone
-    res.status(200).json({
-      message: "อัพเดตข้อมูลเรียบร้อย"
-    })
-
-
-  } catch (error) {
-    next(error)
-  }
-}*/
+  };
