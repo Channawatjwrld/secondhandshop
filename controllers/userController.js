@@ -133,3 +133,14 @@ exports.destroy = async (req, res, next) => {
        next(error)
     }
 };
+
+exports.index = async (req, res, next) => {
+  try {
+    const { role } = req.user
+      res.status(200).json({
+        Data: data
+      })
+    } catch (error) {
+    next(error);
+  }
+}
