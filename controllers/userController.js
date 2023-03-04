@@ -133,14 +133,3 @@ exports.destroy = async (req, res, next) => {
        next(error)
     }
 };
-
-exports.index = async (req, res, next) => {
-  try {
-    const data = await user.find();
-      res.status(200).json({
-        Data: data
-      })
-    } catch (error) {
-    next(error);
-  }
-}
