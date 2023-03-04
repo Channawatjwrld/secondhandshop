@@ -84,13 +84,9 @@ exports.login = async(req,res,next) =>{
 }
 
 exports.profile = (req,res,next) => {
-  const{role,name,email} = req.user
+  const data = await User.find();
   res.status(200).json({
-            _id: users._id,
-            name: users.name,
-            email: users.email,
-            password: users.password,
-            role: users.role,
+    Data: data
   })
 }
 
