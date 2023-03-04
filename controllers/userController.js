@@ -100,14 +100,14 @@ exports.rolechange = async (req, res, next) => {
     const user = await User.updateOne({_id: id},{
           role: role
       })
-      console.log(staff);
+      console.log(user);
 
       res.status(200).json({
-        message:'แก้ไข role giup[ihvp'
+        message:'แก้ไข role เรียบร้อย'
       });
 
     }catch (error){
-       error = new Error('No staff Found')
+       error = new Error('No User Found')
        error.statusCode = 400
        next(error)
     }
