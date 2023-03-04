@@ -91,3 +91,31 @@ exports.profile = (req,res,next) => {
     role:role,
   })
 }
+
+exports.rolechange = async (req, res, next) => {
+  try {
+    const { id } = req.params
+    const { role } = req.body
+    const user = await User.findById({
+      _id: id,
+    });
+    //check user exist
+    if (!user) {
+      const error = new Error("ไม่พบข้อมูลผู้ใช้งาน")
+      error.statusCode = 404
+      throw error
+    }
+    //update
+    const data = await User.findByIdAndUpdate({ _id: id }, {
+      role: role
+    })
+    //respone
+    res.status(200).json({
+      message: "อัพเดตข้อมูลเรียบร้อย"
+    })
+
+
+  } catch (error) {
+    next(error)
+  }
+}
