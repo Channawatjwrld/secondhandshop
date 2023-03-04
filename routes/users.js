@@ -11,6 +11,7 @@ router.post('/',[body('name').not().isEmpty().withMessage("Please enter name/sir
                 body('password').not().isEmpty().withMessage("Please enter password").isLength({min:5}).withMessage("Password must more than 5 length")
                 ],userController.register) //Register
 
+router.get('/get', [passportJWT.isLogin,checkAdmin.isAdmin], userController.show); //show all user
 
 router.post('/login',[body('email').not().isEmpty().withMessage("Please enter Email").isEmail().withMessage("Invalid Email type"),
 body('password').not().isEmpty().withMessage("Please enter password").isLength({min:5}).withMessage("Password must more than 5 length")
