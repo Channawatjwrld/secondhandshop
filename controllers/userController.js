@@ -112,3 +112,24 @@ exports.rolechange = async (req, res, next) => {
        next(error)
     }
   };
+
+exports.destroy = async (req, res, next) => {
+    try {const {id} = req.params
+
+    const user = await User.deleteOne({
+        _id : id
+    })
+    if(user.deletedCount === 0){
+      const error = new Error("ไม่สามารถลบข้อมูลได้ / ไม่พบข้อมูลผู้ใช้งาน")
+            error.statusCode = 400
+            throw error;
+    }else{
+        res.status(200).json({
+            message:'ลบข้อมูลเรียบร้อย'
+          });
+    }
+
+    }catch (Error) {
+       next(error)
+    }
+};
