@@ -136,7 +136,7 @@ exports.destroy = async (req, res, next) => {
 
 exports.index = async (req, res, next) => {
   try {
-    const { role } = req.user
+    const data = await user.find();
       res.status(200).json({
         Data: data
       })
