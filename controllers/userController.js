@@ -90,7 +90,7 @@ exports.profile = (req,res,next) => {
   })
 }
 
-exports.rolechange = async (req, res, next) => {
+/*exports.rolechange = async (req, res, next) => {
   try {
     const { id } = req.params
     const { role } = req.body
@@ -116,4 +116,4 @@ exports.rolechange = async (req, res, next) => {
   } catch (error) {
     next(error)
   }
-}
+}*/
