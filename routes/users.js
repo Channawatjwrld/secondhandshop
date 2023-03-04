@@ -3,7 +3,7 @@ var router = express.Router();
 const userController = require('../controllers/userController')
 const { body } = require('express-validator');
 const passportJWT = require('../middleware/passportJWT');
-//const checkAdmin = require('../middleware/checkAdmin');
+const checkAdmin = require('../middleware/checkAdmin');
 
 /* GET users listing. */
 router.post('/',[body('name').not().isEmpty().withMessage("Please enter name/sirname"), 
@@ -19,6 +19,6 @@ body('password').not().isEmpty().withMessage("Please enter password").isLength({
 
 router.get('/me',[passportJWT.isLogin],userController.profile); //User's Profile
 
-//router.put('/role/:id', [passportJWT.isLogin,checkAdmin.isAdmin], userController.rolechange)//changerole
+router.put('/role/:id', [passportJWT.isLogin,checkAdmin.isAdmin], userController.rolechange)//changerole
 
 module.exports = router;
