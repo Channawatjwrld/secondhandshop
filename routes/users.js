@@ -16,7 +16,7 @@ router.post('/login',[body('email').not().isEmpty().withMessage("Please enter Em
 body('password').not().isEmpty().withMessage("Please enter password").isLength({min:5}).withMessage("Password must more than 5 length")
 ],userController.login) //Login
 
-router.put('/role/:id', [passportJWT.isLogin,checkAdmin.isAdmin], userController.rolechange)//changerole
+//router.put('/role/:id', [passportJWT.isLogin,checkAdmin.isAdmin], userController.rolechange)//changerole
 router.get('/me',[passportJWT.isLogin],userController.profile); //User's Profile
 
 module.exports = router;
