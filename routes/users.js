@@ -18,7 +18,7 @@ body('password').not().isEmpty().withMessage("Please enter password").isLength({
 
 
 router.get('/me',[passportJWT.isLogin],userController.profile); //User's Profile
-
+router.delete('/delete/:id', [passportJWT.isLogin, checkAdmin.isAdmin], userController.destroy)
 router.put('/role/:id',[passportJWT.isLogin,checkAdmin.isAdmin], userController.rolechange)//changerole
 
 module.exports = router;
